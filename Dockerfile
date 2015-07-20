@@ -45,14 +45,14 @@ RUN Rscript rscript.R
 # Cleanup
 RUN rm rscript.R
 
-# create an R user
-ENV HOME /home/user
-RUN useradd --create-home --home-dir $HOME user \
-    && chmod -R u+rwx $HOME \
-    && chown -R user:user $HOME
+## create an R user
+#ENV HOME /home/user
+#RUN useradd --create-home --home-dir $HOME user \
+#    && chmod -R u+rwx $HOME \
+#    && chown -R user:user $HOME
 
-WORKDIR $HOME
-USER user
+#WORKDIR $HOME
+#USER user
 
 # set the command
 CMD ["R"]
