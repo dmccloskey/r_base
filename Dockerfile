@@ -1,8 +1,4 @@
 # Dockerfile to build R_base container images
-# Based on Ubuntu
-
-# Set the base image to Ubuntu
-FROM ubuntu:latest
 
 # Add R-base to the image
 FROM r-base:latest
