@@ -62,43 +62,43 @@ RUN apt-get update \
 ##---------------------------------------------------
 
 # install R packages
-RUN Rscript -e 'install.packages("boot",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("class",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("cluster",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("codetools",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("foreign",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("kernsmooth",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("lattice",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("mass",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("matrix",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("mgcv",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("nlme",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("nnet",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("rpart",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("spatial",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("survival",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("e1071",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("Amelia",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("mixOmics",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("pls",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("spls",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("caret",dependencies=TRUE)'
-#RUN Rscript -e 'install.packages("RVAideMemoire",dependencies=TRUE)'
-RUN Rscript -e 'install.packages("coin",dependencies=TRUE)'
+RUN Rscript -e 'install.packages("boot",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("class",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("cluster",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("codetools",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("foreign",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("kernsmooth",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("lattice",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("mass",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("matrix",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("mgcv",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("nlme",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("nnet",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("rpart",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("spatial",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("survival",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("e1071",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("Amelia",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("mixOmics",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("pls",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("spls",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("caret",dependencies=TRUE)' \
+#	&&Rscript -e 'install.packages("RVAideMemoire",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("coin",dependencies=TRUE)' \
 
 ## install devtools using R
-RUN Rscript -e 'install.packages("devtools")'
+	&&Rscript -e 'install.packages("devtools")'
 
 ## install additional R packages using R
-RUN > rscript.R
-RUN echo 'source("http://bioconductor.org/biocLite.R")' >> rscript.R
-##RUN echo 'biocLite("BiocUpgrade")' >> rscript.R
-RUN echo 'biocLite("Biobase",ask=FALSE)' >> rscript.R
-RUN echo 'biocLite("LMGene",ask=FALSE)' >> rscript.R
-RUN echo 'biocLite("pcaMethods",ask=FALSE)' >> rscript.R
-RUN echo 'biocLite("ropls",ask=FALSE)' >> rscript.R
-RUN echo 'biocLite("pcaMethods",ask=FALSE)' >> rscript.R
-RUN Rscript rscript.R
+RUN > rscript.R \
+	&&echo 'source("http://bioconductor.org/biocLite.R")' >> rscript.R \
+#	&&echo 'biocLite("BiocUpgrade")' >> rscript.R \
+	&&echo 'biocLite("Biobase",ask=FALSE)' >> rscript.R \
+	&&echo 'biocLite("LMGene",ask=FALSE)' >> rscript.R \
+	&&echo 'biocLite("pcaMethods",ask=FALSE)' >> rscript.R \
+	&&echo 'biocLite("ropls",ask=FALSE)' >> rscript.R \
+	&&echo 'biocLite("pcaMethods",ask=FALSE)' >> rscript.R \
+	&&Rscript rscript.R
 
 # Cleanup
 RUN rm rscript.R
