@@ -48,6 +48,13 @@ RUN Rscript -e 'install.packages("e1071",dependencies=TRUE)' \
 	&&Rscript -e 'install.packages("caret",dependencies=TRUE)' \
 #	&&Rscript -e 'install.packages("RVAideMemoire",dependencies=TRUE)' \
 	&&Rscript -e 'install.packages("coin",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("rpart",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("e1071",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("class",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("cluster",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("randomForest",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("DAAG",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("boot",dependencies=TRUE)' \
 
 ## install devtools using R
 	&&Rscript -e 'install.packages("devtools")'
