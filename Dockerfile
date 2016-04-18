@@ -27,6 +27,7 @@ RUN echo "deb http://cran.rstudio.com/bin/linux/ubuntu trusty/" >> /etc/apt/sour
 #		r-recommended=${R_BASE_VERSION}* \
 		libcurl4-openssl-dev \
 		libxml2-dev \
+		libfftw3-dev \
 		git \
 		wget \
         && echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "libcurl")' >> /etc/R/Rprofile.site \
@@ -46,7 +47,6 @@ RUN Rscript -e 'install.packages("e1071",dependencies=TRUE)' \
 	&&Rscript -e 'install.packages("pls",dependencies=TRUE)' \
 	&&Rscript -e 'install.packages("spls",dependencies=TRUE)' \
 	&&Rscript -e 'install.packages("caret",dependencies=TRUE)' \
-#	&&Rscript -e 'install.packages("RVAideMemoire",dependencies=TRUE)' \
 	&&Rscript -e 'install.packages("coin",dependencies=TRUE)' \
 	&&Rscript -e 'install.packages("rpart",dependencies=TRUE)' \
 	&&Rscript -e 'install.packages("e1071",dependencies=TRUE)' \
@@ -61,13 +61,13 @@ RUN Rscript -e 'install.packages("e1071",dependencies=TRUE)' \
 
 ## install additional R packages using R
 RUN > rscript.R \
-	&&echo 'source("http://bioconductor.org/biocLite.R")' >> rscript.R \
-#	&&echo 'biocLite("BiocUpgrade")' >> rscript.R \
+	&&echo 'source("https://bioconductor.org/biocLite.R")' >> rscript.R \
+	&&echo 'biocLite(ask=FALSE)' >> rscript.R \
+	#&&echo 'biocLite("BiocUpgrade")' >> rscript.R \
 	&&echo 'biocLite("Biobase",ask=FALSE)' >> rscript.R \
 	&&echo 'biocLite("LMGene",ask=FALSE)' >> rscript.R \
 	&&echo 'biocLite("pcaMethods",ask=FALSE)' >> rscript.R \
 	&&echo 'biocLite("ropls",ask=FALSE)' >> rscript.R \
-	&&echo 'biocLite("pcaMethods",ask=FALSE)' >> rscript.R \
 	&&Rscript rscript.R
 
 # Cleanup
