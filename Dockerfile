@@ -13,7 +13,8 @@ RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 
-ENV R_BASE_VERSION 3.2.3
+#ENV R_BASE_VERSION 3.2.3
+ENV R_BASE_VERSION 3.3.1
 
 # Install R
 RUN echo "deb http://cran.rstudio.com/bin/linux/ubuntu trusty/" >> /etc/apt/sources.list \
@@ -41,7 +42,8 @@ RUN echo "deb http://cran.rstudio.com/bin/linux/ubuntu trusty/" >> /etc/apt/sour
 	&& rm -rf /var/lib/apt/lists/*
 
 # install R packages
-RUN Rscript -e 'install.packages("e1071",dependencies=TRUE)' \
+RUN Rscript -e 'install.packages("devtools",dependencies=TRUE)' \
+	&&Rscript -e 'install.packages("e1071",dependencies=TRUE)' \
 	&&Rscript -e 'install.packages("Amelia",dependencies=TRUE)' \
 	&&Rscript -e 'install.packages("mixOmics",dependencies=TRUE)' \
 	&&Rscript -e 'install.packages("pls",dependencies=TRUE)' \
@@ -68,6 +70,7 @@ RUN > rscript.R \
 	&&echo 'biocLite("LMGene",ask=FALSE)' >> rscript.R \
 	&&echo 'biocLite("pcaMethods",ask=FALSE)' >> rscript.R \
 	&&echo 'biocLite("ropls",ask=FALSE)' >> rscript.R \
+	&&echo 'biocLite("topGO",ask=FALSE)' >> rscript.R \
 	&&Rscript rscript.R
 
 # Cleanup
